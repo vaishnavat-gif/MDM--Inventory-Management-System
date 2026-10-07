@@ -2,8 +2,6 @@
 
 StockPilot is a full-stack web app for tracking product stock. You can add products, search them, adjust stock up or down, edit details and delete records, all without reloading the page. Items at or below their **reorder level** are highlighted and counted in a low-stock alert banner, and every stock change is written to a **stock activity log**.
 
-Built for **Aim 6 – Inventory / Product Management System**.
-
 ## Features
 
 - **Add / View / Update / Delete** products (Product ID, Name, Category, Quantity, Price)
