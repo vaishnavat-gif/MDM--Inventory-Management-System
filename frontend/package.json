@@ -1,0 +1,18 @@
+{
+  "name": "stockpilot",
+  "version": "1.0.0",
+  "description": "StockPilot frontend (HTML/CSS/JS) with Node.js tooling",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/api.test.js",
+    "format": "prettier --write \"*.{js,css,html}\" \"test/*.js\"",
+    "format:check": "prettier --check \"*.{js,css,html}\" \"test/*.js\""
+  },
+  "devDependencies": {
+    "prettier": "^3.3.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

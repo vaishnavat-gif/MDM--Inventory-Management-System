@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StockPilot - Inventory</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <h1>StockPilot</h1>
+      <p>Know what's on the shelf, before it runs out.</p>
+    </header>
+
+    <main>
+      <section class="stats" aria-label="Summary">
+        <div class="stat"><b id="s-products">0</b><span>products</span></div>
+        <div class="stat"><b id="s-units">0</b><span>units in stock</span></div>
+        <div class="stat"><b id="s-value">0</b><span>stock value (₹)</span></div>
+        <div class="stat warn"><b id="s-low">0</b><span>need reordering</span></div>
+      </section>
+
+      <div id="alert" class="alert" hidden></div>
+
+      <div class="layout">
+        <section class="panel">
+          <h2>Add a product</h2>
+          <form id="add-form" novalidate>
+            <label>Product ID <input name="sku" required maxlength="60" placeholder="e.g. PEN-014" /></label>
+            <label>Name <input name="name" required maxlength="60" placeholder="Gel pen, blue" /></label>
+            <label>Category <input name="category" required maxlength="60" list="cats" placeholder="Stationery" /></label>
+            <datalist id="cats"></datalist>
+            <div class="row">
+              <label>Quantity <input name="quantity" type="number" min="0" step="1" value="0" /></label>
+              <label>Price (₹) <input name="price" type="number" min="0" step="0.01" value="0" /></label>
+            </div>
+            <label>Reorder when stock falls to <input name="reorder_level" type="number" min="0" step="1" value="5" /></label>
+            <button class="primary" type="submit">Add product</button>
+          </form>
+
+          <h2 class="gap">Recent stock activity</h2>
+          <ul id="log" class="log"></ul>
+        </section>
+
+        <section class="panel wide">
+          <div class="toolbar">
+            <input id="search" type="search" placeholder="Search by ID, name or category" aria-label="Search products" />
+            <select id="cat-filter" aria-label="Filter by category"><option value="">All categories</option></select>
+            <label class="check"><input id="low-only" type="checkbox" /> Low stock only</label>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>ID</th><th>Product</th><th>Category</th><th class="num">Price</th><th class="num">In stock</th><th>Adjust stock</th><th></th></tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+          <p id="empty" class="empty" hidden></p>
+        </section>
+      </div>
+    </main>
+
+    <dialog id="edit-dialog">
+      <form id="edit-form" method="dialog" novalidate>
+        <h2>Edit product</h2>
+        <input type="hidden" name="id" />
+        <label>Product ID <input name="sku" required /></label>
+        <label>Name <input name="name" required /></label>
+        <label>Category <input name="category" required /></label>
+        <div class="row">
+          <label>Quantity <input name="quantity" type="number" min="0" step="1" /></label>
+          <label>Price (₹) <input name="price" type="number" min="0" step="0.01" /></label>
+        </div>
+        <label>Reorder level <input name="reorder_level" type="number" min="0" step="1" /></label>
+        <p id="edit-error" class="form-error" hidden></p>
+        <div class="actions">
+          <button type="button" id="edit-cancel">Cancel</button>
+          <button class="primary" type="submit">Save changes</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
