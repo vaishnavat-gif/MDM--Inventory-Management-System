@@ -126,5 +126,9 @@ Errors return JSON like `{"error": "Quantity cannot be negative."}` with status 
 | Update or delete a missing product | 404 |
 
 ## Author
-
-<Your name>, <Your roll number / course>
+**Name:** Tanushree Vaishnav  
+**Roll No.:** 23  
+**Section:** A  
+**Department:** Electronics and Communication Engineering  
+**Course:** Backend Technologies  
+**Course Coordinator:** Rashmi Dagde
